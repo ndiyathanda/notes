@@ -5,6 +5,7 @@ easy notes app
 ![](bbb.png)
 
 #Plans for the future
+
 Google Drive synchronization 
 or
 accounts and notes kept on ftp server
