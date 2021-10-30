@@ -12,4 +12,4 @@ or
 <br>
 accounts and notes kept on ftp server
 <br>
-better hud, more options
+better hud, images, more options
