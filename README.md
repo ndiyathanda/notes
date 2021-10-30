@@ -4,7 +4,7 @@ easy notes app
 ### Screenshot from app
 ![](bbb.png)
 
-###Plans for the future
+####Plans for the future
 
 Google Drive synchronization 
 or
