@@ -2,4 +2,4 @@
 easy notes app
 
 ### Screenshot from app
-![](aaa.png)
+![](bbb.png)
