@@ -9,5 +9,7 @@ easy notes app
 Google Drive synchronization 
 <br>
 or
+<br>
 accounts and notes kept on ftp server
+<br>
 better hud, more options
