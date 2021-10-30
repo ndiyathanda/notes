@@ -135,7 +135,7 @@ root.title("Notes")
 root.geometry('1000x600')
 root.resizable(0, 0)
 
-l = tkinter.Label(root, text='Easy Notes app based on txt files by ndiyathanda_ ver0.1', bg=string10, fg=string9)
+l = tkinter.Label(root, text='Easy Notes app based on txt files by ndiyathanda_ ver0.2', bg=string10, fg=string9)
 l.place(x=350, y=0)
 
 l = tkinter.Label(root, text='Note name ^^^', bg=string10, fg=string9)
