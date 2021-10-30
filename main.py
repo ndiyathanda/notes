@@ -1,14 +1,43 @@
 import tkinter
+from tkinter import * 
+import tkinter as tk
 import os
 from tkinter import messagebox
 from tkinter.scrolledtext import ScrolledText
 
+settings_lst = []
+string9 = ""
+string10 = ""
 notes_list = []
 note_name = ""
 notes_index = 0
 END = ""
 c = 0
+    
+def settings():
+    root2.geometry('200x150')
+    root2.resizable(0, 0)
+    root2.deiconify()
+    root2['background']=string10
+    l.pack()
+    l.pack()
+    entry10.pack()
+    l2.pack()
+    entry9.pack()
+    m.pack()  
+    root2.mainloop()
 
+def apply_settings():
+    file = open("settings.txt", "w")
+    string10 = entry10.get()
+    string9 = entry9.get()
+    file.write(string10)
+    file.write("\n"+string9)
+    print(string10)
+    root2.withdraw()
+    tkinter.messagebox.showinfo(title="NdiNotes", message="You need restart app to apply settings. Remember to save notes!")
+    l.pack() 
+    
 def add_note():
     note_name = ""
     note_name = entry2.get()
@@ -21,17 +50,6 @@ def add_note():
     messagebox.showinfo("NdiNotes", "Note added")
     load_notes()
 
-  #  notes_list.clear()
-   # note_name = ""
-    #note_name = entry2.get()
-   # notes_list.append(note_name)
-   # file = open("../../Desktop/notes.txt", "w")
-   # for note_name in notes_list:
-   #     file.write("\n" + note_name + "\n" + "END-NOTE")
-   # file.close()
-   # print(notes_list)
-   # load_tasks()
-
 def delete_note():
     pozdrawiam = entry2.get()
     res = messagebox.askquestion('NdiNotes', 'Do you want to delete this note: '+pozdrawiam+"?")
@@ -40,8 +58,6 @@ def delete_note():
     elif res == 'yes':
         print("n")
         os.remove(pozdrawiam+".txt")
-        #leje kurwa belweder
-
         f = open('notes.txt', 'r')
         a = []
         a.clear()
@@ -59,7 +75,7 @@ def delete_note():
             f.write(line)
         messagebox.showinfo("NdiNotes", "Note deleted")
         f.close()
-
+    root2.withdraw()    
 
 def load_notes():
     string1 = ""
@@ -69,7 +85,7 @@ def load_notes():
         if not line.isspace():
             show_all_notes.insert("end", line)
     show_all_notes.configure(state='disabled')
-   # show_all_notes2()
+    root2.withdraw()
 
 def open_note():
     refresh_note_pad2()
@@ -77,14 +93,10 @@ def open_note():
     string2 = entry2.get()
     file = open(string2+".txt", "r")
     opened_note = string2 + ".txt"
-    #for line in file:
-     #   print(line)
     for line in file:
         print(line)
         note_pad.insert("end" ,line)
-        #   print(line)
     file.close()
-    #show_all_notes2()
 
 def save_to_file():
     string2 = entry2.get()
@@ -93,15 +105,7 @@ def save_to_file():
     file.write(data)
     messagebox.showinfo("NdiNotes", "Note saved!")
     file.close()
-
-#def show_all_notes2():
-#    #refresh_note_pad()
-#    show_all_notes.configure(state='normal')
-#    notes_index = 0
-#    for notes in notes_list:
-#        show_all_notes.insert(0.0, notes + "\n")
-#    show_all_notes.configure(state='disabled')
-
+    
 def refresh_note_pad2():
     note_pad.configure(state='normal')
     note_pad.event_generate("<<SelectAll>>")
@@ -112,42 +116,65 @@ def refresh_note_pad():
     show_all_notes.event_generate("<<SelectAll>>")
     show_all_notes.event_generate("<<Clear>>")
 
+string10="grey"
+
+file = open("settings.txt", "r")
+for x in file:
+    settings_lst.append(x) 
+    
+string10 = settings_lst[0]
+string9 = settings_lst[1]
+string10 = string10.strip()
+string9 = string9.strip()
+print(string10, string9)
+
+root2 = tk.Tk()
 root = tkinter.Tk()
-root['background']='grey'
+root['background']=string10
 root.title("Notes")
 root.geometry('500x410')
 root.resizable(0, 0)
 
-l = tkinter.Label(root, text='Easy Notes app based on txt files by ndiyathanda_ ver0', bg='grey')
-l.pack()
+l = tkinter.Label(root, text='Easy Notes app based on txt files by ndiyathanda_ ver0.1', bg=string10, fg=string9)
+l.place(x=150, y=0)
 
-l = tkinter.Label(root, text='Note name ^^^', bg='grey')
+l = tkinter.Label(root, text='Note name ^^^', bg=string10, fg=string9)
 l.place(x=0,y=170)
 
-m = tkinter.Button(root, text = 'Add note', command=add_note, bg='grey', width = 13)
+m = tkinter.Button(root, text = 'Settings', command=settings, bg=string10, width = 13, fg=string9)
+m.place(x=0, y=0)
+
+m = tkinter.Button(root, text = 'Add note', command=add_note, bg=string10, width = 13, fg=string9)
 m.place(x=0, y=25)
 
-entry2 = tkinter.Entry(width=16)
+entry2 = tkinter.Entry(root, width=16)
 entry2.place(x=0, y=150)
 
-m = tkinter.Button(root, text = 'Open note', command=open_note, bg='grey', width = 13)
+m = tkinter.Button(root, text = 'Open note', command=open_note, bg=string10, width = 13, fg=string9)
 m.place(x=0, y=50)
 
-m = tkinter.Button(root, text = 'Refresh', command=load_notes, bg='grey', width = 13)
+m = tkinter.Button(root, text = 'Refresh', command=load_notes, bg=string10, width = 13, fg=string9)
 m.place(x=0, y=100)
 
-m = tkinter.Button(root, text = 'Delete note', command=delete_note, bg='grey', width = 13)
+m = tkinter.Button(root, text = 'Delete note', command=delete_note, bg=string10, width = 13, fg=string9)
 m.place(x=0, y=75)
 
-m = tkinter.Button(root, text = 'Save note', command=save_to_file, bg='grey', width = 13)
+m = tkinter.Button(root, text = 'Save note', command=save_to_file, bg=string10, width = 13, fg=string9)
 m.place(x=0, y=125)
 
-show_all_notes = ScrolledText(root, width = 10, height = 12.5, bg='black', fg='white')
+show_all_notes = ScrolledText(root, width = 10, height = 12.5, bg=string10, fg=string9)
 show_all_notes.place(x=0, y=197)
 
-note_pad = ScrolledText(root, width = 47, height = 25, bg='black', fg='white', insertbackground='white')
+note_pad = ScrolledText(root, width = 47, height = 25, bg=string10, fg=string9, insertbackground='white')
 note_pad.place(x=100,y=20)
 
+l = tkinter.Label(root2, text='Settings', bg=string10)
+l = tkinter.Label(root2, text='Hud color', bg=string10)
+entry10 = tkinter.Entry(root2, width=8)
+l2 = tkinter.Label(root2, text='Font color', bg=string10)
+entry9 = tkinter.Entry(root2, width=8)
+m = tkinter.Button(root2, text = 'OK', command=apply_settings, bg=string10)
+root2.withdraw()              
 load_notes()
 
 root.mainloop()
