@@ -6,7 +6,8 @@ easy notes app
 
 ### Plans for the future
 
-Google Drive synchronization \n
-or\n
-accounts and notes kept on ftp server\n
-better hud, more options\n
+Google Drive synchronization 
+<br>
+or
+accounts and notes kept on ftp server
+better hud, more options
