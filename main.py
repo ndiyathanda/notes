@@ -19,6 +19,7 @@ def settings():
     root2.resizable(0, 0)
     root2.deiconify()
     root2['background']=string10
+    root.title("Settings")
     l.pack()
     l.pack()
     entry10.pack()
@@ -116,17 +117,26 @@ def refresh_note_pad():
     show_all_notes.event_generate("<<SelectAll>>")
     show_all_notes.event_generate("<<Clear>>")
 
-string10="grey"
-
 file = open("settings.txt", "r")
+
 for x in file:
     settings_lst.append(x) 
+
+try:
+    string10 = settings_lst[0]
+    string9 = settings_lst[1]
+except:
+    tkinter.messagebox.showinfo(title="Warning", message="Settings file is empty!")
     
-string10 = settings_lst[0]
-string9 = settings_lst[1]
 string10 = string10.strip()
 string9 = string9.strip()
+
 print(string10, string9)
+
+if string10=="":
+    string10="white"
+if string9=="":
+    string9="black" 
 
 root2 = tk.Tk()
 root = tkinter.Tk()
@@ -135,7 +145,7 @@ root.title("Notes")
 root.geometry('1000x600')
 root.resizable(0, 0)
 
-l = tkinter.Label(root, text='Easy Notes app based on txt files by ndiyathanda_ ver0.2', bg=string10, fg=string9)
+l = tkinter.Label(root, text='Easy Notes app based on txt files by ndiyathanda_ ver0.3', bg=string10, fg=string9)
 l.place(x=350, y=0)
 
 l = tkinter.Label(root, text='Note name ^^^', bg=string10, fg=string9)
@@ -177,7 +187,9 @@ entry10 = tkinter.Entry(root2, width=8)
 l2 = tkinter.Label(root2, text='Font color', bg=string10, fg=string9)
 entry9 = tkinter.Entry(root2, width=8)
 m = tkinter.Button(root2, text = 'OK', command=apply_settings, bg=string10, fg=string9)
-root2.withdraw()              
+
+root2.withdraw()            
+  
 load_notes()
 
 root.mainloop()
