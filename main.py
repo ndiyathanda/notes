@@ -1,3 +1,7 @@
+#Notes app by ndiyathanda_
+#Version 0.3 beta
+#https://github.com/ndiyathanda/notes
+
 import tkinter
 from tkinter import * 
 import tkinter as tk
